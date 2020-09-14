@@ -104,10 +104,10 @@ export default function PendingView({
         const option = SUPPORTED_WALLETS[key]
         if (option.connector === connector) {
           if (option.connector === injected) {
-            if (isMetamask && option.name !== 'MetaMask') {
+            if (isMetamask && option.name !== 'NewMask') {
               return null
             }
-            if (!isMetamask && option.name === 'MetaMask') {
+            if (!isMetamask && option.name === 'NewMask') {
               return null
             }
           }
