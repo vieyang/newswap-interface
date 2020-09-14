@@ -1,4 +1,4 @@
-import { Currency, Pair } from '@uniswap/sdk'
+import { Currency, Pair, Rounding } from '@uniswap/sdk'
 import React, { useState, useContext, useCallback } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { darken } from 'polished'
@@ -176,7 +176,7 @@ export default function CurrencyInputPanel({
                   style={{ display: 'inline', cursor: 'pointer' }}
                 >
                   {!hideBalance && !!currency && selectedCurrencyBalance
-                    ? 'Balance: ' + selectedCurrencyBalance?.toSignificant(6)
+                    ? 'Balance: ' + selectedCurrencyBalance?.toFixed(4, undefined, Rounding.ROUND_HALF_UP)
                     : ' -'}
                 </TYPE.body>
               )}
