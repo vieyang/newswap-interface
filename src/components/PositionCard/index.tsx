@@ -20,6 +20,7 @@ import CurrencyLogo from '../CurrencyLogo'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import { AutoRow, RowBetween, RowFixed } from '../Row'
 import { Dots } from '../swap/styleds'
+import { TESTNET_INFO_URL_PREFIX } from '../../utils/newchain'
 
 export const FixedHeightRow = styled(RowBetween)`
   height: 24px;
@@ -224,7 +225,7 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
             </FixedHeightRow>
 
             <AutoRow justify="center" marginTop={'10px'}>
-              <ExternalLink href={`https://uniswap.info/pair/${pair.liquidityToken.address}`}>
+              <ExternalLink href={`${TESTNET_INFO_URL_PREFIX}/pair/${pair.liquidityToken.address}`}>
                 View pool information ↗
               </ExternalLink>
             </AutoRow>
