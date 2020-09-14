@@ -7,6 +7,7 @@ import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUnisw
 import { ROUTER_ADDRESS } from '../constants'
 import { ChainId, Currency, CurrencyAmount, ETHER, JSBI, Percent, Token } from '@uniswap/sdk'
 import { TokenAddressMap } from '../state/lists/hooks'
+import { hexAddress2NewAddress, isValidNewAddress } from './newchain'
 
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {
@@ -41,6 +42,7 @@ export function getEtherscanLink(chainId: ChainId, data: string, type: 'transact
     }
     case 'address':
     default: {
+      data = hexAddress2NewAddress(data, chainId)
       return `${prefix}/address/${data}`
     }
   }
@@ -48,11 +50,16 @@ export function getEtherscanLink(chainId: ChainId, data: string, type: 'transact
 
 // shorten the checksummed version of the input address to have 0x + 4 characters at start and end
 export function shortenAddress(address: string, chars = 4): string {
-  const parsed = isAddress(address)
+  let parsed = isAddress(address)
   if (!parsed) {
-    throw Error(`Invalid 'address' parameter '${address}'.`)
+    const isNewAddress = isValidNewAddress(address)
+    if (isNewAddress) {
+      parsed = address
+    } else {
+      throw Error(`Invalid 'address' parameter '${address}'.`)
+    }
   }
-  return `${parsed.substring(0, chars + 2)}...${parsed.substring(42 - chars)}`
+  return `${parsed.substring(0, chars + 2)}...${parsed.substring(parsed.length - chars)}`
 }
 
 // add 10%

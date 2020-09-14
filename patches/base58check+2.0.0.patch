@@ -1,0 +1,9 @@
+diff --git a/node_modules/base58check/index.d.ts b/node_modules/base58check/index.d.ts
+new file mode 100644
+index 0000000..2668b99
+--- /dev/null
++++ b/node_modules/base58check/index.d.ts
+@@ -0,0 +1,2 @@
++export function encode(data: string|Buffer, prefix:string|Buffer = '00', encoding:string = 'hex')
++export function decode(string: string|Buffer, encoding:string|undefined)
+\ No newline at end of file
