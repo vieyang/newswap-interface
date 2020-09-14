@@ -13,7 +13,7 @@ import { Colors } from './styled'
 export * from './components'
 
 const MEDIA_WIDTHS = {
-  upToExtraSmall: 500,
+  upToExtraSmall: 600,
   upToSmall: 600,
   upToMedium: 960,
   upToLarge: 1280
@@ -41,17 +41,17 @@ export function colors(darkMode: boolean): Colors {
     black,
 
     // text
-    text1: darkMode ? '#FFFFFF' : '#000000',
+    text1: darkMode ? '#FFFFFF' : '#647684', // main
     text2: darkMode ? '#C3C5CB' : '#565A69',
-    text3: darkMode ? '#6C7284' : '#888D9B',
+    text3: darkMode ? '#6C7284' : '#647684', // switch secondary
     text4: darkMode ? '#565A69' : '#C3C5CB',
     text5: darkMode ? '#2C2F36' : '#EDEEF2',
 
     // backgrounds / greys
-    bg1: darkMode ? '#212429' : '#FFFFFF',
-    bg2: darkMode ? '#2C2F36' : '#F7F8FA',
-    bg3: darkMode ? '#40444F' : '#EDEEF2',
-    bg4: darkMode ? '#565A69' : '#CED0D9',
+    bg1: darkMode ? '#212429' : '#FFFFFF', // main
+    bg2: darkMode ? '#2C2F36' : '#F7F8FA', // border
+    bg3: darkMode ? '#40444F' : '#D4D9DD', // button inactive
+    bg4: darkMode ? '#2D3943' : '#F2F2F7',
     bg5: darkMode ? '#6C7284' : '#888D9B',
 
     //specialty colors
@@ -59,14 +59,14 @@ export function colors(darkMode: boolean): Colors {
     advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
 
     //primary colors
-    primary1: darkMode ? '#2172E5' : '#ff007a',
+    primary1: darkMode ? '#20C5A0' : '#20C5A0', // button color
     primary2: darkMode ? '#3680E7' : '#FF8CC3',
     primary3: darkMode ? '#4D8FEA' : '#FF99C9',
-    primary4: darkMode ? '#376bad70' : '#F6DDE8',
-    primary5: darkMode ? '#153d6f70' : '#FDEAF1',
+    primary4: darkMode ? '#647684' : '#D4D9DD', // button color hover
+    primary5: darkMode ? '#2D3943' : '#F2F2F7', // secondary button color
 
     // color text
-    primaryText1: darkMode ? '#6da8ff' : '#ff007a',
+    primaryText1: darkMode ? '#D4D9DD' : '#647684', // primary color, button, link
 
     // secondary colors
     secondary1: darkMode ? '#2172E5' : '#ff007a',
@@ -74,7 +74,7 @@ export function colors(darkMode: boolean): Colors {
     secondary3: darkMode ? '#17000b26' : '#FDEAF1',
 
     // other
-    red1: '#FF6871',
+    red1: '#FF6871', // warning
     red2: '#F82D3A',
     green1: '#27AE60',
     yellow1: '#FFE270',
@@ -97,7 +97,7 @@ export function theme(darkMode: boolean): DefaultTheme {
     },
 
     //shadows
-    shadow1: darkMode ? '#000' : '#2F80ED',
+    shadow1: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(0,0,0,0.1)',
 
     // media queries
     mediaWidth: mediaWidthTemplates,
