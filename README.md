@@ -33,6 +33,10 @@ repository.
 ```bash
 yarn
 ```
+### Patch @uniswap/sdk package
+```bash
+yarn patch-package
+```
 
 ### Run
 
