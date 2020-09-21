@@ -110,7 +110,7 @@ export default function Menu() {
           {/*  <MessageCircle size={14} />*/}
           {/*  Discord*/}
           {/*</MenuItem>*/}
-          <MenuItem id="link" href="http://newswapinfo.testnet.cloud.diynova.com/">
+          <MenuItem id="link" href="https://info.testnet.newswap.org/">
             <PieChart size={14} />
             Analytics
           </MenuItem>
