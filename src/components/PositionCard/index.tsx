@@ -1,4 +1,4 @@
-import { JSBI, Pair, Percent } from '@uniswap/sdk'
+import { ChainId, JSBI, Pair, Percent } from '@uniswap/sdk'
 import { darken } from 'polished'
 import React, { useState } from 'react'
 import { ChevronDown, ChevronUp } from 'react-feather'
@@ -20,7 +20,7 @@ import CurrencyLogo from '../CurrencyLogo'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import { AutoRow, RowBetween, RowFixed } from '../Row'
 import { Dots } from '../swap/styleds'
-import { TESTNET_INFO_URL_PREFIX } from '../../utils/newchain'
+import { MAINNET_INFO_URL_PREFIX, TESTNET_INFO_URL_PREFIX } from '../../utils/newchain'
 
 export const FixedHeightRow = styled(RowBetween)`
   height: 24px;
@@ -125,7 +125,11 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
 }
 
 export default function FullPositionCard({ pair, border }: PositionCardProps) {
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
+  let infoUrlPrefix = TESTNET_INFO_URL_PREFIX
+  if (chainId === ChainId.NEWCHAINMAIN) {
+    infoUrlPrefix = MAINNET_INFO_URL_PREFIX
+  }
 
   const currency0 = unwrappedToken(pair.token0)
   const currency1 = unwrappedToken(pair.token1)
@@ -225,7 +229,7 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
             </FixedHeightRow>
 
             <AutoRow justify="center" marginTop={'10px'}>
-              <ExternalLink href={`${TESTNET_INFO_URL_PREFIX}/pair/${pair.liquidityToken.address}`}>
+              <ExternalLink href={`${infoUrlPrefix}/pair/${pair.liquidityToken.address}`}>
                 View pool information ↗
               </ExternalLink>
             </AutoRow>

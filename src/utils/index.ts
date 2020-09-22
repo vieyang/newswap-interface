@@ -24,13 +24,17 @@ const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   4: 'rinkeby.',
   5: 'goerli.',
   42: 'kovan.',
-  1007: 'newchaintest.'
+  1007: 'newchaintest.',
+  1012: 'newchainmain.'
 }
 
 export function getEtherscanLink(chainId: ChainId, data: string, type: 'transaction' | 'token' | 'address'): string {
   let prefix = `https://${ETHERSCAN_PREFIXES[chainId] || ETHERSCAN_PREFIXES[1]}etherscan.io`
   if (chainId === ChainId.NEWCHAINTEST) {
     prefix = 'https://explorer.testnet.newtonproject.org'
+  }
+  if (chainId === ChainId.NEWCHAINMAIN) {
+    prefix = 'https://explorer.newtonproject.org'
   }
 
   switch (type) {

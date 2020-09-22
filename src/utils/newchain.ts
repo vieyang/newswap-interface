@@ -1,6 +1,7 @@
 import base58check from 'base58check'
 
-const TESTNET_INFO_URL_PREFIX = 'http://newswapinfo.testnet.cloud.diynova.com'
+const TESTNET_INFO_URL_PREFIX = 'https://info.testnet.newswap.org/'
+const MAINNET_INFO_URL_PREFIX = 'https://info.newswap.org/'
 
 // config chain ID
 const devChainId = 1002
@@ -95,5 +96,6 @@ export {
   newAddress2HexAddress,
   isValidNewAddressHead,
   isValidNewAddress,
-  TESTNET_INFO_URL_PREFIX
+  TESTNET_INFO_URL_PREFIX,
+  MAINNET_INFO_URL_PREFIX
 }
