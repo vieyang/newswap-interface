@@ -272,6 +272,17 @@ export default function Swap() {
     onCurrencySelection
   ])
 
+  let SwapButtonText
+  if (priceImpactSeverity > 3 && !isExpertMode) {
+    SwapButtonText = t('Price Impact Too High')
+  } else {
+    if (priceImpactSeverity > 2) {
+      SwapButtonText = t('Swap Anyway')
+    } else {
+      SwapButtonText = t('Swap')
+    }
+  }
+
   return (
     <>
       <TokenWarningModal
@@ -298,7 +309,7 @@ export default function Swap() {
 
           <AutoColumn gap={'md'}>
             <CurrencyInputPanel
-              label={independentField === Field.OUTPUT && !showWrap && trade ? 'From (estimated)' : 'From'}
+              label={independentField === Field.OUTPUT && !showWrap && trade ? t('From (estimated)') : t('From')}
               value={formattedAmounts[Field.INPUT]}
               showMaxButton={!atMaxAmountInput}
               currency={currencies[Field.INPUT]}
@@ -330,7 +341,7 @@ export default function Swap() {
             <CurrencyInputPanel
               value={formattedAmounts[Field.OUTPUT]}
               onUserInput={handleTypeOutput}
-              label={independentField === Field.INPUT && !showWrap && trade ? 'To (estimated)' : 'To'}
+              label={independentField === Field.INPUT && !showWrap && trade ? t('To (estimated)') : t('To')}
               showMaxButton={false}
               currency={currencies[Field.OUTPUT]}
               onCurrencySelect={handleOutputSelect}
@@ -358,7 +369,7 @@ export default function Swap() {
                   {Boolean(trade) && (
                     <RowBetween align="center">
                       <Text fontWeight={500} fontSize={14} color={theme.text2}>
-                        Price
+                        {t('Price')}
                       </Text>
                       <TradePrice
                         price={trade?.executionPrice}
@@ -434,9 +445,7 @@ export default function Swap() {
                   error={isValid && priceImpactSeverity > 2}
                 >
                   <Text fontSize={16} fontWeight={500}>
-                    {priceImpactSeverity > 3 && !isExpertMode
-                      ? `Price Impact High`
-                      : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
+                    {SwapButtonText}
                   </Text>
                 </ButtonError>
               </RowBetween>
@@ -460,11 +469,7 @@ export default function Swap() {
                 error={isValid && priceImpactSeverity > 2 && !swapCallbackError}
               >
                 <Text fontSize={20} fontWeight={500}>
-                  {swapInputError
-                    ? swapInputError
-                    : priceImpactSeverity > 3 && !isExpertMode
-                    ? `Price Impact Too High`
-                    : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
+                  {swapInputError ? swapInputError : SwapButtonText}
                 </Text>
               </ButtonError>
             )}

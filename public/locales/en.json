@@ -1,5 +1,10 @@
 {
   "ConnectWallet": "Connect Wallet",
+  "EnterAnAmount": "Enter an amount",
+  "SelectAToken": "Select a token",
+  "EnterARecipient": "Enter a recipient",
+  "InvalidRecipient": "Invalid recipient",
+  "To (estimated)": "To (estimated)",
   "noWallet": "No Ethereum wallet found",
   "wrongNetwork": "You are on the wrong network",
   "switchNetwork": "Please switch to {{ correctNetwork }}",

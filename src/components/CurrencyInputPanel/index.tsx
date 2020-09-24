@@ -176,7 +176,9 @@ export default function CurrencyInputPanel({
                   style={{ display: 'inline', cursor: 'pointer' }}
                 >
                   {!hideBalance && !!currency && selectedCurrencyBalance
-                    ? 'Balance: ' + selectedCurrencyBalance?.toFixed(4, undefined, Rounding.ROUND_HALF_UP)
+                    ? t('balance', {
+                        balanceInput: selectedCurrencyBalance?.toFixed(4, undefined, Rounding.ROUND_HALF_UP)
+                      })
                     : ' -'}
                 </TYPE.body>
               )}
