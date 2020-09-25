@@ -109,6 +109,7 @@
   "balance": "余额: {{ balanceInput }}",
   "unlock": "解锁",
   "pending": "处理中",
+  "Pending": "处理中",
   "selectToken": "选择通证",
   "Token Name": "通证名称",
   "Select a token": "请选择一个通证",

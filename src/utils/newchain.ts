@@ -1,7 +1,7 @@
 import base58check from 'base58check'
 
-const TESTNET_INFO_URL_PREFIX = 'https://info.testnet.newswap.org/'
-const MAINNET_INFO_URL_PREFIX = 'https://info.newswap.org/'
+const TESTNET_INFO_URL_PREFIX = 'https://info.testnet.newswap.org'
+const MAINNET_INFO_URL_PREFIX = 'https://info.newswap.org'
 
 // config chain ID
 const devChainId = 1002
