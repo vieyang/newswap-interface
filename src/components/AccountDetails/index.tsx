@@ -22,6 +22,7 @@ import { ButtonSecondary } from '../Button'
 import { ExternalLink as LinkIcon } from 'react-feather'
 import { ExternalLink, LinkStyledButton, TYPE } from '../../theme'
 import { hexAddress2NewAddress } from '../../utils/newchain'
+import { useTranslation } from 'react-i18next'
 
 const HeaderRow = styled.div`
   ${({ theme }) => theme.flexRowNoWrap};
@@ -230,7 +231,7 @@ export default function AccountDetails({
   const accountNewAddress = hexAddress2NewAddress(account, chainId)
   const theme = useContext(ThemeContext)
   const dispatch = useDispatch<AppDispatch>()
-
+  const { t } = useTranslation()
   function formatConnectorName() {
     const { ethereum } = window
     const isMetaMask = !!(ethereum && ethereum.isMetaMask)
@@ -240,7 +241,11 @@ export default function AccountDetails({
           SUPPORTED_WALLETS[k].connector === connector && (connector !== injected || isMetaMask === (k === 'METAMASK'))
       )
       .map(k => SUPPORTED_WALLETS[k].name)[0]
-    return <WalletName>Connected with {name}</WalletName>
+    return (
+      <WalletName>
+        {t('Connected with')} {name}
+      </WalletName>
+    )
   }
 
   function getStatusIcon() {
@@ -297,7 +302,7 @@ export default function AccountDetails({
         <CloseIcon onClick={toggleWalletModal}>
           <CloseColor />
         </CloseIcon>
-        <HeaderRow>Account</HeaderRow>
+        <HeaderRow>{t('Account')}</HeaderRow>
         <AccountSection>
           <YourAccount>
             <InfoCard>
@@ -320,7 +325,7 @@ export default function AccountDetails({
                       openOptions()
                     }}
                   >
-                    Change
+                    {t('Change')}
                   </WalletAction>
                 </div>
               </AccountGroupingRow>
@@ -360,7 +365,7 @@ export default function AccountDetails({
                             href={chainId && getEtherscanLink(chainId, ENSName, 'address')}
                           >
                             <LinkIcon size={16} />
-                            <span style={{ marginLeft: '4px' }}>View on NewtonExplorer</span>
+                            <span style={{ marginLeft: '4px' }}>{t('View on NewtonExplorer')}</span>
                           </AddressLink>
                         )}
                       </div>
@@ -372,7 +377,7 @@ export default function AccountDetails({
                       <div>
                         {account && (
                           <Copy toCopy={accountNewAddress}>
-                            <span style={{ marginLeft: '4px' }}>Copy Address</span>
+                            <span style={{ marginLeft: '4px' }}>{t('Copy Address')}</span>
                           </Copy>
                         )}
                         {chainId && account && (
@@ -382,7 +387,7 @@ export default function AccountDetails({
                             href={getEtherscanLink(chainId, account, 'address')}
                           >
                             <LinkIcon size={16} />
-                            <span style={{ marginLeft: '4px' }}>View on NewtonExplorer</span>
+                            <span style={{ marginLeft: '4px' }}>{t('View on NewtonExplorer')}</span>
                           </AddressLink>
                         )}
                       </div>
@@ -397,8 +402,8 @@ export default function AccountDetails({
       {!!pendingTransactions.length || !!confirmedTransactions.length ? (
         <LowerSection>
           <AutoRow mb={'1rem'} style={{ justifyContent: 'space-between' }}>
-            <TYPE.body>Recent Transactions</TYPE.body>
-            <LinkStyledButton onClick={clearAllTransactionsCallback}>(clear all)</LinkStyledButton>
+            <TYPE.body>{t('Recent Transactions')}</TYPE.body>
+            <LinkStyledButton onClick={clearAllTransactionsCallback}>({t('clear all')})</LinkStyledButton>
           </AutoRow>
           {renderTransactions(pendingTransactions)}
           {renderTransactions(confirmedTransactions)}

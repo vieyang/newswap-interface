@@ -6,6 +6,7 @@ import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import useToggle from '../../hooks/useToggle'
 
 import { ExternalLink } from '../../theme'
+import { useTranslation } from 'react-i18next'
 
 const StyledMenuIcon = styled(MenuIcon)`
   path {
@@ -85,7 +86,7 @@ export default function Menu() {
   const [open, toggle] = useToggle(false)
 
   useOnClickOutside(node, open ? toggle : undefined)
-
+  const { t } = useTranslation()
   return (
     // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451
     <StyledMenu ref={node as any}>
@@ -96,7 +97,7 @@ export default function Menu() {
         <MenuFlyout>
           <MenuItem id="link" href="https://newtonproject.org/">
             <Info size={14} />
-            About
+            {t('About')}
           </MenuItem>
           {/*<MenuItem id="link" href="https://uniswap.org/docs/v2">*/}
           {/*  <BookOpen size={14} />*/}
@@ -112,7 +113,7 @@ export default function Menu() {
           {/*</MenuItem>*/}
           <MenuItem id="link" href="https://info.testnet.newswap.org/">
             <PieChart size={14} />
-            Analytics
+            {t('Analytics')}
           </MenuItem>
         </MenuFlyout>
       )}

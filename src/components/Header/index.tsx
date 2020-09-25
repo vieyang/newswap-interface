@@ -14,7 +14,7 @@ import { useDarkModeManager } from '../../state/user/hooks'
 import { useETHBalances } from '../../state/wallet/hooks'
 
 import { YellowCard } from '../Card'
-import Settings from '../Settings'
+// import Settings from '../Settings'
 import Menu from '../Menu'
 
 import Row, { RowBetween } from '../Row'
@@ -171,7 +171,7 @@ export default function Header() {
           </HeaderElement>
           <HeaderElementWrap>
             {/*<VersionSwitch />*/}
-            <Settings />
+            {/*<Settings />*/}
             <Menu />
           </HeaderElementWrap>
         </HeaderControls>
