@@ -13,6 +13,7 @@ import Circle from '../../assets/images/blue-loader.svg'
 
 import { getEtherscanLink } from '../../utils'
 import { useActiveWeb3React } from '../../hooks'
+import { useTranslation } from 'react-i18next'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -37,6 +38,7 @@ const CustomLightSpinner = styled(Spinner)<{ size: string }>`
 `
 
 function ConfirmationPendingContent({ onDismiss, pendingText }: { onDismiss: () => void; pendingText: string }) {
+  const { t } = useTranslation()
   return (
     <Wrapper>
       <Section>
@@ -49,7 +51,7 @@ function ConfirmationPendingContent({ onDismiss, pendingText }: { onDismiss: () 
         </ConfirmedIcon>
         <AutoColumn gap="12px" justify={'center'}>
           <Text fontWeight={500} fontSize={20}>
-            Waiting For Confirmation
+            {t('Waiting For Confirmation')}
           </Text>
           <AutoColumn gap="12px" justify={'center'}>
             <Text fontWeight={600} fontSize={14} color="" textAlign="center">
@@ -57,7 +59,7 @@ function ConfirmationPendingContent({ onDismiss, pendingText }: { onDismiss: () 
             </Text>
           </AutoColumn>
           <Text fontSize={12} color="#565A69" textAlign="center">
-            Confirm this transaction in your wallet
+            {t('Confirm this transaction in your wallet')}
           </Text>
         </AutoColumn>
       </Section>
@@ -75,7 +77,7 @@ function TransactionSubmittedContent({
   chainId: ChainId
 }) {
   const theme = useContext(ThemeContext)
-
+  const { t } = useTranslation()
   return (
     <Wrapper>
       <Section>
@@ -88,19 +90,19 @@ function TransactionSubmittedContent({
         </ConfirmedIcon>
         <AutoColumn gap="12px" justify={'center'}>
           <Text fontWeight={500} fontSize={20}>
-            Transaction Submitted
+            {t('Transaction Submitted')}
           </Text>
 
           {chainId && hash && (
             <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')}>
               <Text fontWeight={500} fontSize={14} color={theme.primary1}>
-                View on NewtonExplorer
+                {t('View on NewtonExplorer')}
               </Text>
             </ExternalLink>
           )}
           <ButtonPrimary onClick={onDismiss} style={{ margin: '20px 0 0 0' }}>
             <Text fontWeight={500} fontSize={20}>
-              Close
+              {t('Close')}
             </Text>
           </ButtonPrimary>
         </AutoColumn>
