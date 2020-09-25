@@ -418,9 +418,9 @@ export default function Swap() {
                       Approving <Loader stroke="white" />
                     </AutoRow>
                   ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
-                    'Approved'
+                    t('Approved')
                   ) : (
-                    'Approve ' + currencies[Field.INPUT]?.symbol
+                    t('Approve') + ' ' + currencies[Field.INPUT]?.symbol
                   )}
                 </ButtonConfirmed>
                 <ButtonError

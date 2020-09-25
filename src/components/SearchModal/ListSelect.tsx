@@ -24,6 +24,7 @@ import ListLogo from '../ListLogo'
 import QuestionHelper from '../QuestionHelper'
 import Row, { RowBetween } from '../Row'
 import { PaddedColumn, SearchInput, Separator, SeparatorDark } from './styleds'
+import { useTranslation } from 'react-i18next'
 
 const UnpaddedLinkStyledButton = styled(LinkStyledButton)`
   padding: 0;
@@ -90,6 +91,7 @@ function listUrlRowHTMLId(listUrl: string) {
 }
 
 const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; onBack: () => void }) {
+  const { t } = useTranslation()
   const listsByUrl = useSelector<AppState, AppState['lists']['byUrl']>(state => state.lists.byUrl)
   const selectedListUrl = useSelectedListUrl()
   const dispatch = useDispatch<AppDispatch>()
@@ -212,7 +214,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
           className="select-button"
           style={{ width: '5rem', minWidth: '5rem', padding: '0.5rem .35rem', borderRadius: '12px', fontSize: '14px' }}
         >
-          Selected
+          {t('Selected')}
         </ButtonPrimary>
       ) : (
         <>
@@ -227,7 +229,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
             }}
             onClick={selectThisList}
           >
-            Select
+            {t('Select')}
           </ButtonPrimary>
         </>
       )}
@@ -250,7 +252,7 @@ const ListContainer = styled.div`
 
 export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBack: () => void }) {
   const [listUrlInput, setListUrlInput] = useState<string>('')
-
+  const { t } = useTranslation()
   const dispatch = useDispatch<AppDispatch>()
   const lists = useSelector<AppState, AppState['lists']['byUrl']>(state => state.lists.byUrl)
   const adding = Boolean(lists[listUrlInput]?.loadingRequestId)
@@ -328,7 +330,7 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
             <ArrowLeft style={{ cursor: 'pointer' }} onClick={onBack} />
           </div>
           <Text fontWeight={500} fontSize={20}>
-            Manage Lists
+            {t('Manage Lists')}
           </Text>
           <CloseIcon onClick={onDismiss} />
         </RowBetween>
@@ -338,21 +340,21 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
 
       <PaddedColumn gap="14px">
         <Text fontWeight={600}>
-          Add a list{' '}
+          {t('Add a list')}{' '}
           <QuestionHelper text="Token lists are an open specification for lists of ERC20 tokens. You can use any token list by entering its URL below. Beware that third party token lists can contain fake or malicious ERC20 tokens." />
         </Text>
         <Row>
           <SearchInput
             type="text"
             id="list-add-input"
-            placeholder="https:// or ipfs:// or ENS name"
+            placeholder="https://"
             value={listUrlInput}
             onChange={handleInput}
             onKeyDown={handleEnterKey}
             style={{ height: '2.75rem', borderRadius: 12, padding: '12px' }}
           />
           <AddListButton onClick={handleAddList} disabled={!validUrl}>
-            Add
+            {t('Add')}
           </AddListButton>
         </Row>
         {addError ? (
