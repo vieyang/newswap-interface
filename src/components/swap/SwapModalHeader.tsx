@@ -46,7 +46,7 @@ export default function SwapModalHeader({
             fontWeight={500}
             color={showAcceptChanges && trade.tradeType === TradeType.EXACT_OUTPUT ? theme.primary1 : ''}
           >
-            {trade.inputAmount.toSignificant(6)}
+            {trade.inputAmount.toSignificant(16)}
           </TruncatedText>
         </RowFixed>
         <RowFixed gap={'0px'}>
@@ -72,7 +72,7 @@ export default function SwapModalHeader({
                 : ''
             }
           >
-            {trade.outputAmount.toSignificant(6)}
+            {trade.outputAmount.toSignificant(16)}
           </TruncatedText>
         </RowFixed>
         <RowFixed gap={'0px'}>
