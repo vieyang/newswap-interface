@@ -95,7 +95,7 @@ export default function Menu() {
       </StyledMenuButton>
       {open && (
         <MenuFlyout>
-          <MenuItem id="link" href="https://newtonproject.org/">
+          <MenuItem id="link" href="https://testnet.newswap.org/">
             <Info size={14} />
             {t('About')}
           </MenuItem>
