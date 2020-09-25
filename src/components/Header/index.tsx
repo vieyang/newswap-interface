@@ -1,4 +1,4 @@
-import { ChainId, Rounding } from '@uniswap/sdk'
+import { ChainId } from '@uniswap/sdk'
 import React from 'react'
 import { isMobile } from 'react-device-detect'
 import { Text } from 'rebass'
@@ -163,7 +163,7 @@ export default function Header() {
             <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
               {account && userEthBalance ? (
                 <BalanceText style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem" fontWeight={500}>
-                  {userEthBalance?.toFixed(4, undefined, Rounding.ROUND_HALF_UP)} NEW
+                  {userEthBalance?.toExact()} NEW
                 </BalanceText>
               ) : null}
               <Web3Status />
