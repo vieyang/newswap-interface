@@ -12,6 +12,7 @@ import { AutoRow, RowBetween } from '../Row'
 import { AutoColumn } from '../Column'
 import { AlertTriangle } from 'react-feather'
 import { ButtonError } from '../Button'
+import { useTranslation } from 'react-i18next'
 
 const Wrapper = styled.div<{ error: boolean }>`
   background: ${({ theme }) => transparentize(0.6, theme.bg3)};
@@ -39,6 +40,7 @@ interface TokenWarningCardProps {
 
 function TokenWarningCard({ token }: TokenWarningCardProps) {
   const { chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
 
   const tokenSymbol = token?.symbol?.toLowerCase() ?? ''
   const tokenName = token?.name?.toLowerCase() ?? ''
@@ -58,7 +60,6 @@ function TokenWarningCard({ token }: TokenWarningCardProps) {
   }, [token, chainId, allTokens, tokenSymbol, tokenName])
 
   if (!token) return null
-
   return (
     <Wrapper error={duplicateNameOrSymbol}>
       <AutoRow gap="6px">
@@ -74,7 +75,9 @@ function TokenWarningCard({ token }: TokenWarningCardProps) {
           </TYPE.main>
           {chainId && (
             <ExternalLink style={{ fontWeight: 400 }} href={getEtherscanLink(chainId, token.address, 'token')}>
-              <TYPE.blue title={token.address}>{shortenAddress(token.address)} (View on NewtonExplorer)</TYPE.blue>
+              <TYPE.blue title={token.address}>
+                {shortenAddress(token.address)} ({t('(View on NewtonExplorer')})
+              </TYPE.blue>
             </ExternalLink>
           )}
         </AutoColumn>
