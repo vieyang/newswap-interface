@@ -148,6 +148,7 @@ export default function CurrencyInputPanel({
   showCommonBases
 }: CurrencyInputPanelProps) {
   const { t } = useTranslation()
+  label = t(label)
 
   const [modalOpen, setModalOpen] = useState(false)
   const { account } = useActiveWeb3React()

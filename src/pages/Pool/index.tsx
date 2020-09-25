@@ -80,7 +80,7 @@ export default function Pool() {
             {!account ? (
               <LightCard padding="40px">
                 <TYPE.body color={theme.text3} textAlign="center">
-                  Connect to a wallet to view your liquidity.
+                  {t('Connect to a wallet to view your liquidity.')}
                 </TYPE.body>
               </LightCard>
             ) : v2IsLoading ? (
@@ -98,7 +98,7 @@ export default function Pool() {
             ) : (
               <LightCard padding="40px">
                 <TYPE.body color={theme.text3} textAlign="center">
-                  No liquidity found.
+                  {t('No liquidity found.')}
                 </TYPE.body>
               </LightCard>
             )}
