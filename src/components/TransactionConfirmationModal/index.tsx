@@ -140,12 +140,13 @@ export function ConfirmationModalContent({
 
 export function TransactionErrorContent({ message, onDismiss }: { message: string; onDismiss: () => void }) {
   const theme = useContext(ThemeContext)
+  const { t } = useTranslation()
   return (
     <Wrapper>
       <Section>
         <RowBetween>
           <Text fontWeight={500} fontSize={20}>
-            Error
+            {t('Error')}
           </Text>
           <CloseIcon onClick={onDismiss} />
         </RowBetween>
@@ -157,7 +158,7 @@ export function TransactionErrorContent({ message, onDismiss }: { message: strin
         </AutoColumn>
       </Section>
       <BottomSection gap="12px">
-        <ButtonPrimary onClick={onDismiss}>Dismiss</ButtonPrimary>
+        <ButtonPrimary onClick={onDismiss}>{t('Dismiss')}</ButtonPrimary>
       </BottomSection>
     </Wrapper>
   )
