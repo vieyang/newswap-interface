@@ -41,6 +41,7 @@ export default function Transaction({ hash }: { hash: string }) {
   const allTransactions = useAllTransactions()
 
   const tx = allTransactions?.[hash]
+  //TODO: fix translation for Approve
   const summary = tx?.summary
   const pending = !tx?.receipt
   const success = !pending && tx && (tx.receipt?.status === 1 || typeof tx.receipt?.status === 'undefined')

@@ -95,6 +95,7 @@ export default function TokenWarningModal({
   tokens: Token[]
   onConfirm: () => void
 }) {
+  const { t } = useTranslation()
   const [understandChecked, setUnderstandChecked] = useState(false)
   const toggleUnderstand = useCallback(() => setUnderstandChecked(uc => !uc), [])
 
@@ -105,18 +106,10 @@ export default function TokenWarningModal({
         <AutoColumn gap="lg">
           <AutoRow gap="6px">
             <StyledWarningIcon />
-            <TYPE.main color={'red2'}>Token imported</TYPE.main>
+            <TYPE.main color={'red2'}>{t('Token imported')}</TYPE.main>
           </AutoRow>
           <TYPE.body color={'red2'}>
-            Anyone can create an NRC6 token on Ethereum with <em>any</em> name, including creating fake versions of
-            existing tokens and tokens that claim to represent projects that do not have a token.
-          </TYPE.body>
-          <TYPE.body color={'red2'}>
-            This interface can load arbitrary tokens by token addresses. Please take extra caution and do your research
-            when interacting with arbitrary NRC6 tokens.
-          </TYPE.body>
-          <TYPE.body color={'red2'}>
-            If you purchase an arbitrary token, <strong>you may be unable to sell it back.</strong>
+            {t('Anyone can create an NRC6 token on NewChain with any name, Please take extra caution!')}
           </TYPE.body>
           {tokens.map(token => {
             return <TokenWarningCard key={token.address} token={token} />
@@ -130,7 +123,7 @@ export default function TokenWarningModal({
                   checked={understandChecked}
                   onChange={toggleUnderstand}
                 />{' '}
-                I understand
+                {t('I understand')}
               </label>
             </div>
             <ButtonError
@@ -146,7 +139,7 @@ export default function TokenWarningModal({
                 onConfirm()
               }}
             >
-              <TYPE.body color="white">Continue</TYPE.body>
+              <TYPE.body color="white">{t('Continue')}</TYPE.body>
             </ButtonError>
           </RowBetween>
         </AutoColumn>
