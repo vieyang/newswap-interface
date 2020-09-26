@@ -63,7 +63,7 @@ export default function ListUpdatePopup({
           <>
             <div>
               <Text>
-                An update is available for the token list &quot;{oldList.name}&quot; (
+                {t('An update is available for the token list')} &quot;{oldList.name}&quot; (
                 {listVersionLabel(oldList.version)} to {listVersionLabel(newList.version)}).
               </Text>
               <ul>
@@ -75,7 +75,7 @@ export default function ListUpdatePopup({
                         {i === tokensAdded.length - 1 ? null : ', '}
                       </React.Fragment>
                     ))}{' '}
-                    added
+                    {t('added')}
                   </li>
                 ) : null}
                 {tokensRemoved.length > 0 ? (
@@ -86,7 +86,7 @@ export default function ListUpdatePopup({
                         {i === tokensRemoved.length - 1 ? null : ', '}
                       </React.Fragment>
                     ))}{' '}
-                    removed
+                    {t('removed')}
                   </li>
                 ) : null}
                 {numTokensChanged > 0 ? <li>{numTokensChanged} tokens updated</li> : null}
