@@ -87,6 +87,12 @@ export default function Menu() {
 
   useOnClickOutside(node, open ? toggle : undefined)
   const { t } = useTranslation()
+  if (process.env.REACT_APP_NEWSWAP_WEB_URL === undefined) {
+    throw new Error(`REACT_APP_NEWSWAP_WEB_URL must be a defined environment variable`)
+  }
+  if (process.env.REACT_APP_NEWSWAP_INFO_URL === undefined) {
+    throw new Error(`REACT_APP_NEWSWAP_INFO_URL must be a defined environment variable`)
+  }
   return (
     // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451
     <StyledMenu ref={node as any}>
@@ -95,7 +101,7 @@ export default function Menu() {
       </StyledMenuButton>
       {open && (
         <MenuFlyout>
-          <MenuItem id="link" href="https://testnet.newswap.org/">
+          <MenuItem id="link" href={process.env.REACT_APP_NEWSWAP_WEB_URL}>
             <Info size={14} />
             {t('About')}
           </MenuItem>
@@ -111,7 +117,7 @@ export default function Menu() {
           {/*  <MessageCircle size={14} />*/}
           {/*  Discord*/}
           {/*</MenuItem>*/}
-          <MenuItem id="link" href="https://info.testnet.newswap.org/">
+          <MenuItem id="link" href={process.env.REACT_APP_NEWSWAP_INFO_URL}>
             <PieChart size={14} />
             {t('Analytics')}
           </MenuItem>
