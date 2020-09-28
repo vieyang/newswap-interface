@@ -6,9 +6,11 @@ import EthereumLogo from '../../assets/images/ethereum-logo.png'
 import useHttpLocations from '../../hooks/useHttpLocations'
 import { WrappedTokenInfo } from '../../state/lists/hooks'
 import Logo from '../Logo'
+import { NETWORK_CHAIN_ID } from '../../connectors'
 
 //TODO: use newswap hosted url
-const getTokenLogoURL = (address: string) => `https://misc.newswap.org/tokenlist/assets/${address}/logo.png`
+const getTokenLogoURL = (address: string) =>
+  `https://misc.newswap.org/tokenlist/assets/${NETWORK_CHAIN_ID}/${address}/logo.png`
 
 const StyledEthereumLogo = styled.img<{ size: string }>`
   width: ${({ size }) => size};
