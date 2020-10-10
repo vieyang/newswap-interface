@@ -331,7 +331,7 @@ export default function WalletModal({
                 setWalletView(WALLET_VIEWS.ACCOUNT)
               }}
             >
-              Back
+              {t('Back')}
             </HoverText>
           </HeaderRow>
         ) : (

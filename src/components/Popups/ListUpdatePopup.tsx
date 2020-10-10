@@ -55,8 +55,8 @@ export default function ListUpdatePopup({
     <AutoRow>
       <AutoColumn style={{ flex: '1' }} gap="8px">
         {auto ? (
-          <TYPE.body fontWeight={500}>
-            The token list &quot;{oldList.name}&quot; has been updated to{' '}
+          <TYPE.body fontWeight={500}>  
+            {t('nameUpdated', {oldName:oldList.name})}{' '}
             <strong>{listVersionLabel(newList.version)}</strong>.
           </TYPE.body>
         ) : (
@@ -89,7 +89,7 @@ export default function ListUpdatePopup({
                     {t('removed')}
                   </li>
                 ) : null}
-                {numTokensChanged > 0 ? <li>{numTokensChanged} tokens updated</li> : null}
+                {numTokensChanged > 0 ? <li>{numTokensChanged} {t('tokens updated')}</li> : null}
               </ul>
             </div>
             <AutoRow>

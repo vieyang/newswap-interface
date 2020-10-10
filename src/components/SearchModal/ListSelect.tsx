@@ -140,7 +140,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
       action: 'Start Remove List',
       label: listUrl
     })
-    if (window.prompt(`Please confirm you would like to remove this list by typing REMOVE`) === `REMOVE`) {
+    if (window.prompt(t('confirmRemove')) === `REMOVE`) {
       ReactGA.event({
         category: 'Lists',
         action: 'Confirm Remove List',
@@ -148,7 +148,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
       })
       dispatch(removeList(listUrl))
     }
-  }, [dispatch, listUrl])
+  }, [dispatch, listUrl, t])
 
   if (!list) return null
 
@@ -200,10 +200,10 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
             <SeparatorDark />
             {/*<ExternalLink href={`https://tokenlists.org/token-list?url=${listUrl}`}>View list</ExternalLink>*/}
             <UnpaddedLinkStyledButton onClick={handleRemoveList} disabled={Object.keys(listsByUrl).length === 1}>
-              Remove list
+              {t('Remove list')}
             </UnpaddedLinkStyledButton>
             {pending && (
-              <UnpaddedLinkStyledButton onClick={handleAcceptListUpdate}>Update list</UnpaddedLinkStyledButton>
+              <UnpaddedLinkStyledButton onClick={handleAcceptListUpdate}>{t('Update list')}</UnpaddedLinkStyledButton>
             )}
           </PopoverContainer>
         )}
@@ -341,7 +341,7 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
       <PaddedColumn gap="14px">
         <Text fontWeight={600}>
           {t('Add a list')}{' '}
-          <QuestionHelper text="Token lists are an open specification for lists of NRC6 tokens. You can use any token list by entering its URL below. Beware that third party token lists can contain fake or malicious NRC6 tokens." />
+          <QuestionHelper text={t('addListTips')} />
         </Text>
         <Row>
           <SearchInput

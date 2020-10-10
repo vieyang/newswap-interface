@@ -242,7 +242,7 @@ export default function AddLiquidity({
         </RowFlat>
         <Row>
           <Text fontSize="24px">
-            {currencies[Field.CURRENCY_A]?.symbol + '/' + currencies[Field.CURRENCY_B]?.symbol + ' Pool Tokens'}
+            {currencies[Field.CURRENCY_A]?.symbol + '/' + currencies[Field.CURRENCY_B]?.symbol + ' ' + t('Pool Tokens')}
           </Text>
         </Row>
         <TYPE.italic fontSize={12} textAlign="left" padding={'8px 0 0 0 '}>
@@ -269,9 +269,14 @@ export default function AddLiquidity({
     )
   }
 
-  const pendingText = `Supplying ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)} ${
-    currencies[Field.CURRENCY_A]?.symbol
-  } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)} ${currencies[Field.CURRENCY_B]?.symbol}`
+  // const pendingText = `Supplying ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)} ${
+  //   currencies[Field.CURRENCY_A]?.symbol
+  // } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)} ${currencies[Field.CURRENCY_B]?.symbol}`
+  const pendingText = `${t('supplyingAnd',{
+    aAmount:parsedAmounts[Field.CURRENCY_A]?.toSignificant(6),
+    aSymbol:currencies[Field.CURRENCY_A]?.symbol,
+    bAmount:parsedAmounts[Field.CURRENCY_B]?.toSignificant(6),
+    bSymbol:currencies[Field.CURRENCY_B]?.symbol})}`
 
   const handleCurrencyASelect = useCallback(
     (currencyA: Currency) => {

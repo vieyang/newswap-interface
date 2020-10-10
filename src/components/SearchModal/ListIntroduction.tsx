@@ -35,9 +35,9 @@ export default function ListIntroduction({ onSelectList }: { onSelectList: () =>
           </ButtonPrimary>
           <OutlineCard style={{ marginBottom: '8px', padding: '1rem' }} hidden>
             <Text fontWeight={400} fontSize={14} style={{ textAlign: 'center' }}>
-              Token lists are an{' '}
-              <ExternalLink href="https://github.com/uniswap/token-lists">open specification</ExternalLink>. Check out{' '}
-              <ExternalLink href="https://tokenlists.org">tokenlists.org</ExternalLink> to learn more.
+              {t('Token lists are an')}{' '}
+              <ExternalLink href="https://github.com/uniswap/token-lists">{t('open specification')}</ExternalLink>. {t('Check out')}{' '}
+              <ExternalLink href="https://tokenlists.org">tokenlists.org</ExternalLink> {t('to learn more.')}
             </Text>
           </OutlineCard>
         </AutoColumn>
