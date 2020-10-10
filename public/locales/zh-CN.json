@@ -252,5 +252,14 @@
   "+ Add a send (optional)": "+ Add a send (optional)",
   "- Remove send": "- Remove send",
   "Wrap": "Wrap",
-  "Unwrap": "Unwrap"
+  "Unwrap": "Unwrap",
+  "Missing dependencies": "Missing dependencies",
+  "Invalid recipient": "Invalid recipient",
+  "gasError": "Unexpected issue with estimating the gas. Please try again.",
+  "slippageError": "This transaction will not succeed either due to price movement or fee on transfer. Try increasing your slippage tolerance.",
+  "transactionError": "The transaction cannot succeed due to error",
+  "tokenError": "This is probably an issue with one of the tokens you are swapping.",
+  "unexpectedError": "Unexpected error. Please contact support: none of the calls threw an error",
+  "Transaction rejected.": "Transaction rejected.",
+  "Swap failed": "Swap failed"
 }
