@@ -12,6 +12,7 @@ import { useActiveWeb3React } from './index'
 // import { useV1ExchangeContract } from './useContract'
 import useENS from './useENS'
 import { Version } from './useToggledVersion'
+import { useTranslation } from 'react-i18next'
 
 export enum SwapCallbackState {
   INVALID,
@@ -121,14 +122,15 @@ export function useSwapCallback(
 
   const { address: recipientAddress } = useENS(recipientAddressOrName)
   const recipient = recipientAddressOrName === null ? account : recipientAddress
+  const { t } = useTranslation()
 
   return useMemo(() => {
     if (!trade || !library || !account || !chainId) {
-      return { state: SwapCallbackState.INVALID, callback: null, error: 'Missing dependencies' }
+      return { state: SwapCallbackState.INVALID, callback: null, error: t('Missing dependencies') }
     }
     if (!recipient) {
       if (recipientAddressOrName !== null) {
-        return { state: SwapCallbackState.INVALID, callback: null, error: 'Invalid recipient' }
+        return { state: SwapCallbackState.INVALID, callback: null, error: t('Invalid recipient') }
       } else {
         return { state: SwapCallbackState.LOADING, callback: null, error: null }
       }
@@ -160,7 +162,7 @@ export function useSwapCallback(
                 return contract.callStatic[methodName](...args, options)
                   .then(result => {
                     console.debug('Unexpected successful call after failed estimate gas', call, gasError, result)
-                    return { call, error: new Error('Unexpected issue with estimating the gas. Please try again.') }
+                    return { call, error: new Error(t('gasError')) }
                   })
                   .catch(callError => {
                     console.debug('Call threw error', call, callError)
@@ -168,11 +170,10 @@ export function useSwapCallback(
                     switch (callError.reason) {
                       case 'UniswapV2Router: INSUFFICIENT_OUTPUT_AMOUNT':
                       case 'UniswapV2Router: EXCESSIVE_INPUT_AMOUNT':
-                        errorMessage =
-                          'This transaction will not succeed either due to price movement or fee on transfer. Try increasing your slippage tolerance.'
+                        errorMessage = t('slippageError')
                         break
                       default:
-                        errorMessage = `The transaction cannot succeed due to error: ${callError.reason}. This is probably an issue with one of the tokens you are swapping.`
+                        errorMessage = `${t('transactionError')}: ${callError.reason}. ${t('tokenError')}`
                     }
                     return { call, error: new Error(errorMessage) }
                   })
@@ -189,7 +190,7 @@ export function useSwapCallback(
         if (!successfulEstimation) {
           const errorCalls = estimatedCalls.filter((call): call is FailedCall => 'error' in call)
           if (errorCalls.length > 0) throw errorCalls[errorCalls.length - 1].error
-          throw new Error('Unexpected error. Please contact support: none of the calls threw an error')
+          throw new Error(t('unexpectedError'))
         }
 
         const {
@@ -232,15 +233,15 @@ export function useSwapCallback(
           .catch((error: any) => {
             // if the user rejected the tx, pass this along
             if (error?.code === 4001) {
-              throw new Error('Transaction rejected.')
+              throw new Error(t('Transaction rejected.'))
             } else {
               // otherwise, the error was unexpected and we need to convey that
               console.error(`Swap failed`, error, methodName, args, value)
-              throw new Error(`Swap failed: ${error.message}`)
+              throw new Error(`${t('Swap failed')}: ${error.message}`)
             }
           })
       },
       error: null
     }
-  }, [trade, library, account, chainId, recipient, recipientAddressOrName, swapCalls, addTransaction])
+  }, [trade, library, account, chainId, recipient, recipientAddressOrName, swapCalls, addTransaction, t])
 }

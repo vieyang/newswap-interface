@@ -119,5 +119,10 @@
   "transactionRevertForLong": "Your transaction will revert if it is pending for more than this long.",
   "supplyingAnd": "Supplying {{aAmount}} {{aSymbol}} and {{bAmount}} {{bSymbol}}",
   "yourLiquidityQuestion": "When you add liquidity, you are given pool tokens that represent your share. If you don’t see a pool you joined in this list, try importing a pool below.",
-  "removingAnd": "Removing {{aAmount}} {{aSymbol}} and {{bAmount}} {{bSymbol}}"
+  "removingAnd": "Removing {{aAmount}} {{aSymbol}} and {{bAmount}} {{bSymbol}}",
+  "gasError": "Unexpected issue with estimating the gas. Please try again.",
+  "slippageError": "This transaction will not succeed either due to price movement or fee on transfer. Try increasing your slippage tolerance.",
+  "transactionError": "The transaction cannot succeed due to error",
+  "tokenError": "This is probably an issue with one of the tokens you are swapping.",
+  "unexpectedError": "Unexpected error. Please contact support: none of the calls threw an error"
 }              
