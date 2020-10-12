@@ -261,5 +261,6 @@
   "tokenError": "This is probably an issue with one of the tokens you are swapping.",
   "unexpectedError": "Unexpected error. Please contact support: none of the calls threw an error",
   "Transaction rejected.": "Transaction rejected.",
-  "Swap failed": "Swap failed"
+  "Swap failed": "Swap failed",
+  "FAQ": "常见问题"
 }

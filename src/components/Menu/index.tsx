@@ -93,6 +93,9 @@ export default function Menu() {
   if (process.env.REACT_APP_NEWSWAP_INFO_URL === undefined) {
     throw new Error(`REACT_APP_NEWSWAP_INFO_URL must be a defined environment variable`)
   }
+  if (process.env.REACT_APP_NEWSWAP_FAQ_URL === undefined) {
+    throw new Error(`REACT_APP_NEWSWAP_FAQ_URL must be a defined environment variable`)
+  }
   return (
     // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451
     <StyledMenu ref={node as any}>
@@ -121,6 +124,10 @@ export default function Menu() {
             <PieChart size={14} />
             {t('Analytics')}
           </MenuItem>
+          <MenuItem id="link" href={process.env.REACT_APP_NEWSWAP_FAQ_URL}>
+            <Info size={14} />
+            {t('FAQ')}
+          </MenuItem>          
         </MenuFlyout>
       )}
     </StyledMenu>
