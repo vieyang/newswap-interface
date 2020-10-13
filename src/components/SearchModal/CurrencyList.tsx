@@ -16,6 +16,7 @@ import { MouseoverTooltip } from '../Tooltip'
 import { FadedSpan, MenuItem } from './styleds'
 import Loader from '../Loader'
 import { isTokenOnList } from '../../utils'
+import { useTranslation } from 'react-i18next'
 
 function currencyKey(currency: Currency): string {
   return currency instanceof Token ? currency.address : currency === ETHER ? 'NEWTON' : ''
@@ -103,6 +104,8 @@ function CurrencyRow({
   const removeToken = useRemoveUserAddedToken()
   const addToken = useAddUserToken()
 
+  const { t } = useTranslation()
+
   // only show add or remove buttons if not on selected list
   return (
     <MenuItem
@@ -120,27 +123,27 @@ function CurrencyRow({
         <FadedSpan>
           {!isOnSelectedList && customAdded ? (
             <TYPE.main fontWeight={500}>
-              Added by user
+              {t('Added by user')}
               <LinkStyledButton
                 onClick={event => {
                   event.stopPropagation()
                   if (chainId && currency instanceof Token) removeToken(chainId, currency.address)
                 }}
               >
-                (Remove)
+                ({t('Remove')})
               </LinkStyledButton>
             </TYPE.main>
           ) : null}
           {!isOnSelectedList && !customAdded ? (
             <TYPE.main fontWeight={500}>
-              Found by address
+              {t('Found by address')}
               <LinkStyledButton
                 onClick={event => {
                   event.stopPropagation()
                   if (currency instanceof Token) addToken(currency)
                 }}
               >
-                (Add)
+                ({t('Add')})
               </LinkStyledButton>
             </TYPE.main>
           ) : null}

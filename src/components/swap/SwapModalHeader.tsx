@@ -92,7 +92,7 @@ export default function SwapModalHeader({
               style={{ padding: '.5rem', width: 'fit-content', fontSize: '0.825rem', borderRadius: '12px' }}
               onClick={onAcceptChanges}
             >
-              Accept
+              {t('Accept')}
             </ButtonPrimary>
           </RowBetween>
         </SwapShowAcceptChanges>
@@ -119,7 +119,7 @@ export default function SwapModalHeader({
       {recipient !== null ? (
         <AutoColumn justify="flex-start" gap="sm" style={{ padding: '12px 0 0 0px' }}>
           <TYPE.main>
-            Output will be sent to{' '}
+            {t('Output will be sent to')}{' '}
             <b title={recipient}>{isAddress(recipient) ? shortenAddress(recipient) : recipient}</b>
           </TYPE.main>
         </AutoColumn>

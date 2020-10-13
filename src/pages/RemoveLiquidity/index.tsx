@@ -414,9 +414,14 @@ export default function RemoveLiquidity({
     )
   }
 
-  const pendingText = `Removing ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)} ${
-    currencyA?.symbol
-  } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)} ${currencyB?.symbol}`
+  // const pendingText = `Removing ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)} ${
+  //   currencyA?.symbol
+  // } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)} ${currencyB?.symbol}`
+  const pendingText = `${t('removingAnd',{
+    aAmount:parsedAmounts[Field.CURRENCY_A]?.toSignificant(6),
+    aSymbol:currencyA?.symbol,
+    bAmount:parsedAmounts[Field.CURRENCY_B]?.toSignificant(6),
+    bSymbol:currencyB?.symbol})}`
 
   const liquidityPercentChangeCallback = useCallback(
     (value: number) => {
@@ -521,7 +526,7 @@ export default function RemoveLiquidity({
                         75%
                       </MaxButton>
                       <MaxButton onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')} width="20%">
-                        Max
+                        {t('Max')}
                       </MaxButton>
                     </RowBetween>
                   </>

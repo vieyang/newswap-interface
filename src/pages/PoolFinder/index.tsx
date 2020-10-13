@@ -171,7 +171,7 @@ export default function PoolFinder() {
             <LightCard padding="45px 10px">
               <AutoColumn gap="sm" justify="center">
                 <Text textAlign="center">
-                  Loading
+                  {t('Loading')}
                   <Dots />
                 </Text>
               </AutoColumn>

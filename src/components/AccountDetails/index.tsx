@@ -410,7 +410,7 @@ export default function AccountDetails({
         </LowerSection>
       ) : (
         <LowerSection>
-          <TYPE.body color={theme.text1}>Your transactions will appear here...</TYPE.body>
+          <TYPE.body color={theme.text1}>{t('yourTransactionsAppear')}</TYPE.body>
         </LowerSection>
       )}
     </>

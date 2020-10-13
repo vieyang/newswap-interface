@@ -74,7 +74,7 @@ export default function Pool() {
               <Text color={theme.text1} fontWeight={500}>
                 {t('Your Liquidity')}
               </Text>
-              <Question text="When you add liquidity, you are given pool tokens that represent your share. If you don’t see a pool you joined in this list, try importing a pool below." />
+              <Question text={t('yourLiquidityQuestion')} />
             </RowBetween>
 
             {!account ? (

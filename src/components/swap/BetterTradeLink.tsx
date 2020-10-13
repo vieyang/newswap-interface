@@ -5,6 +5,7 @@ import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
 import useParsedQueryString from '../../hooks/useParsedQueryString'
 import { DEFAULT_VERSION, Version } from '../../hooks/useToggledVersion'
+import { useTranslation } from 'react-i18next'
 
 import { StyledInternalLink } from '../../theme'
 import { YellowCard } from '../Card'
@@ -14,6 +15,7 @@ export default function BetterTradeLink({ version }: { version: Version }) {
   const theme = useContext(ThemeContext)
   const location = useLocation()
   const search = useParsedQueryString()
+  const { t } = useTranslation()
 
   const linkDestination = useMemo(() => {
     return {
@@ -29,9 +31,9 @@ export default function BetterTradeLink({ version }: { version: Version }) {
     <YellowCard style={{ marginTop: '12px', padding: '8px 4px' }}>
       <AutoColumn gap="sm" justify="center" style={{ alignItems: 'center', textAlign: 'center' }}>
         <Text lineHeight="145.23%;" fontSize={14} fontWeight={400} color={theme.text1}>
-          There is a better price for this trade on{' '}
+          {t('betterPrice')}{' '}
           <StyledInternalLink to={linkDestination}>
-            <b>Uniswap {version.toUpperCase()} ↗</b>
+            <b>Newswap {version.toUpperCase()} ↗</b>
           </StyledInternalLink>
         </Text>
       </AutoColumn>
