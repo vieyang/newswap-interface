@@ -79,9 +79,13 @@ function isValidNewAddress(address: string | undefined): boolean {
     return false
   }
   if (address.startsWith(PREFIX) && address.length === 39) {
-    const hexAddress = newAddress2HexAddress(address)
-    if (hexAddress.length === 42) {
-      return true
+    try{
+      const hexAddress = newAddress2HexAddress(address)
+      if (hexAddress.length === 42) {
+        return true
+      }
+    } catch {
+      return false
     }
   }
   return false

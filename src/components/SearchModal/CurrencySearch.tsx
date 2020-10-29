@@ -10,6 +10,7 @@ import { useAllTokens, useToken } from '../../hooks/Tokens'
 import { useSelectedListInfo } from '../../state/lists/hooks'
 import { CloseIcon, LinkStyledButton, TYPE } from '../../theme'
 import { isAddress } from '../../utils'
+import { newAddress2HexAddress, isValidNewAddress } from '../../utils/newchain'
 import Card from '../Card'
 import Column from '../Column'
 import ListLogo from '../ListLogo'
@@ -111,8 +112,9 @@ export function CurrencySearch({
   const inputRef = useRef<HTMLInputElement>()
   const handleInput = useCallback(event => {
     const input = event.target.value
-    const checksummedInput = isAddress(input)
-    setSearchQuery(checksummedInput || input)
+    const hexAddress = isValidNewAddress(input) ? newAddress2HexAddress(input) : input
+    const checksummedInput = isAddress(hexAddress)
+    setSearchQuery(checksummedInput || hexAddress)
     fixedList.current?.scrollTo(0)
   }, [])
 
@@ -151,7 +153,7 @@ export function CurrencySearch({
           type="text"
           id="token-search-input"
           placeholder={t('tokenSearchPlaceholder')}
-          value={searchQuery}
+          // value={searchQuery}
           ref={inputRef as RefObject<HTMLInputElement>}
           onChange={handleInput}
           onKeyDown={handleEnter}
