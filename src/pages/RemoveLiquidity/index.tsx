@@ -26,7 +26,7 @@ import { useCurrency } from '../../hooks/Tokens'
 import { usePairContract } from '../../hooks/useContract'
 
 import { useTransactionAdder } from '../../state/transactions/hooks'
-import { StyledInternalLink, TYPE } from '../../theme'
+import { TYPE } from '../../theme'
 import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '../../utils'
 import { currencyId } from '../../utils/currencyId'
 import useDebouncedChangeHandler from '../../utils/useDebouncedChangeHandler'
@@ -430,7 +430,7 @@ export default function RemoveLiquidity({
     [onUserInput]
   )
 
-  const oneCurrencyIsETH = currencyA === ETHER || currencyB === ETHER
+  // const oneCurrencyIsETH = currencyA === ETHER || currencyB === ETHER
   const oneCurrencyIsWETH = Boolean(
     chainId &&
       ((currencyA && currencyEquals(WETH[chainId], currencyA)) ||
@@ -562,7 +562,7 @@ export default function RemoveLiquidity({
                         </Text>
                       </RowFixed>
                     </RowBetween>
-                    {chainId && (oneCurrencyIsWETH || oneCurrencyIsETH) ? (
+                    {/* {chainId && (oneCurrencyIsWETH || oneCurrencyIsETH) ? (
                       <RowBetween style={{ justifyContent: 'flex-end' }}>
                         {oneCurrencyIsETH ? (
                           <StyledInternalLink
@@ -582,7 +582,7 @@ export default function RemoveLiquidity({
                           </StyledInternalLink>
                         ) : null}
                       </RowBetween>
-                    ) : null}
+                    ) : null} */}
                   </AutoColumn>
                 </LightCard>
               </>
