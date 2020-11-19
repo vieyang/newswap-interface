@@ -8,7 +8,7 @@ import Question from '../../components/QuestionHelper'
 import FullPositionCard from '../../components/PositionCard'
 // import { useUserHasLiquidityInAllTokens } from '../../data/V1'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
-import { StyledInternalLink, TYPE } from '../../theme'
+import { StyledInternalLink, TYPE, ExternalLink } from '../../theme'
 import { Text } from 'rebass'
 import { LightCard } from '../../components/Card'
 import { RowBetween } from '../../components/Row'
@@ -23,6 +23,10 @@ import { Dots } from '../../components/swap/styleds'
 import { useTranslation } from 'react-i18next'
 
 export default function Pool() {
+  if (process.env.REACT_APP_NEWSWAP_INFO_URL === undefined) {
+    throw new Error(`REACT_APP_NEWSWAP_INFO_URL must be a defined environment variable`)
+  }
+
   const theme = useContext(ThemeContext)
   const { account } = useActiveWeb3React()
 
@@ -72,7 +76,10 @@ export default function Pool() {
           <AutoColumn gap="12px" style={{ width: '100%' }}>
             <RowBetween padding={'0 8px'}>
               <Text color={theme.text1} fontWeight={500}>
-                {t('Your Liquidity')}
+                {t('Your Liquidity')}{" "}
+                (
+                <ExternalLink href={process.env.REACT_APP_NEWSWAP_INFO_URL + "/account/" + account}>{ t('Fees Earned')}</ExternalLink>
+                )
               </Text>
               <Question text={t('yourLiquidityQuestion')} />
             </RowBetween>
