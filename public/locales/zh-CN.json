@@ -261,5 +261,6 @@
   "unexpectedError": "意外错误",
   "Transaction rejected.": "交易被拒绝。",
   "Swap failed": "交易失败",
-  "FAQ": "常见问题"
+  "FAQ": "常见问题",
+  "Fees Earned": "手续费收入"
 }
