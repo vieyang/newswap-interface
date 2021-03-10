@@ -46,6 +46,8 @@ import { ClickableText } from '../Pool/styleds'
 import Loader from '../../components/Loader'
 import { useTranslation } from 'react-i18next'
 
+const NUSDT_ADDRESS = process.env.REACT_APP_NUSDT_ADDRESS
+
 export default function Swap() {
   const { t } = useTranslation()
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -286,7 +288,7 @@ export default function Swap() {
   return (
     <>
       <TokenWarningModal
-        isOpen={urlLoadedTokens.length > 0 && !dismissTokenWarning}
+        isOpen={urlLoadedTokens.length > 0 && loadedUrlParams?.inputCurrencyId !== NUSDT_ADDRESS && !dismissTokenWarning}
         tokens={urlLoadedTokens}
         onConfirm={handleConfirmTokenWarning}
       />
